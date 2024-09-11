@@ -2,7 +2,7 @@ import json
 import logging
 from django.http import JsonResponse
 from rest_framework.views import APIView
-from utils.custom_response import ErrorResponse, SuccessResponse
+from utils.custom_response import ErrorResponse
 from utils.get_shipment_date import get_formatted_shipment_date
 from rest_framework import status
 from rest_framework.response import Response
