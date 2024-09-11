@@ -11,13 +11,11 @@ class WebhookApiView(APIView):
     def post(self, request):
         try:
             data = json.loads(request.body)
-            print(data)
             query_text = data.get("queryResult").get("queryText")
             parameters = data.get("queryResult").get("parameters")
             order_id = parameters.get("OrderId")
            
             shipment_date_response = get_formatted_shipment_date(order_id)
-            print(shipment_date_response)
             return Response({"fulfillmentText": shipment_date_response})
             
         except Exception as e:
