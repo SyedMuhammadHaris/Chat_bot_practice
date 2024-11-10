@@ -27,7 +27,7 @@ if ENVIRONMENT is not None:
     environ.Env.read_env(env_file_path(f".{ENVIRONMENT}.env"))
 else:
     print(
-        "Enter your preferred environment\nENV = local | dev | stage | prod\nRun Command Example:\nENV=local python "
+        "Enter your preferred environment\nENV = local | dev\nRun Command Example:\nENV=local python "
         "manage.py runserver"
     )
 
