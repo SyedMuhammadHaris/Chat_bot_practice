@@ -10,20 +10,37 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import environ
+import os
+import sys
 from pathlib import Path
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+env = environ.Env()
 
+def env_file_path(file_name):
+    return os.path.join(BASE_DIR, "environments/" + file_name)
+
+ENVIRONMENT = os.environ.get("ENV", "local")
+if ENVIRONMENT is not None:
+    print(f"Running {ENVIRONMENT} environment")
+    environ.Env.read_env(env_file_path(f".{ENVIRONMENT}.env"))
+else:
+    print(
+        "Enter your preferred environment\nENV = local | dev | stage | prod\nRun Command Example:\nENV=local python "
+        "manage.py runserver"
+    )
+
+    sys.exit(-1)
 
 # Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
+# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ze@=yigj2q0q6fr5#6j6jnz@hqp*&fiaqfzr5msz3z2#r=xdx$'
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env("DEBUG")
 
 ALLOWED_HOSTS = ["*","b37a-2400-adc1-46e-300-4d59-ebdd-72f-e7b4.ngrok-free.app"]
 
