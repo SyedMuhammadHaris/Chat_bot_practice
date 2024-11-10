@@ -3,11 +3,12 @@ import requests
 
 hasattr
 from utils.common import get_formatted_date
+from project.settings import env
 
 
 def get_formatted_shipment_date(order_id):
     try:
-        order_api_url = "https://orderstatusapi-dot-organization-project-311520.uc.r.appspot.com/api/getOrderStatus"
+        order_api_url = env('ORDER_API_URL')
         response = requests.post(order_api_url, {"orderId": order_id})
         json_res = response.json()
         

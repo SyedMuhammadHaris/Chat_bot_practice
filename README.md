@@ -4,7 +4,7 @@
 
 1. **Clone the project:**
    ```bash
-   git clone https://github.com/SyedMuhammadHaris/Chat_bot_practice
+   git clone https://github.com/SyedMuhammadHaris/Chat_bot_practice.git
 
 2. **Activate the virtual environment:**
    ```bash
